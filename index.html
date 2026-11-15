@@ -628,6 +628,67 @@ svg.tapgraph{cursor:crosshair;touch-action:none}
 .spiek[open] summary::after{content:' ▾'}
 .spiek .spiekbody{padding:.1rem 0 .6rem;font-weight:700;line-height:1.55}
 .spiekfoot{color:var(--muted);font-size:.9rem;font-weight:600;margin-top:.4rem}
+
+/* ===================== Meerdere spelers (om de beurt) ===================== */
+.plctrl{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;padding:.1rem .3rem}
+.plctrl .seg{display:flex;gap:.5rem;flex-wrap:wrap}
+.plctrl .seg button{min-height:2.8rem}
+.ptile.sel{outline:5px solid #FFD23F;outline-offset:2px}
+.pord{position:absolute;top:.45rem;left:.45rem;width:2rem;height:2rem;border-radius:50%;background:#FFD23F;color:#111;font-weight:900;display:grid;place-items:center;z-index:2}
+.plstart{display:flex;align-items:center;justify-content:center;gap:1.2rem;padding:.4rem;flex-wrap:wrap}
+.plloot{flex:1;display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;align-content:center;align-items:center;padding:1rem}
+.plloot .ptile{min-width:9rem}
+.sessfinal{flex:1;display:flex;flex-direction:column;gap:.8rem;padding:1.2rem;overflow:auto}
+.srow{display:grid;grid-template-columns:3.2rem auto 1fr auto;align-items:center;gap:1rem;padding:.7rem 1rem;border-radius:1rem;background:rgba(255,255,255,.05)}
+.srow.win{background:rgba(255,210,63,.14);outline:2px solid #FFD23F}
+.smed{font-size:2.2rem;text-align:center}
+.snm{font-size:clamp(1.3rem,3.4vmin,2rem);font-weight:800}
+.spt{font-family:var(--fd);font-size:clamp(2rem,6vmin,3.4rem);color:#FFD23F;text-align:right;line-height:1}
+.spt small{font-size:.9rem;color:var(--muted);margin-left:.4rem;font-family:inherit}
+.sdt{grid-column:2 / -1;color:var(--muted)}
+
+/* Klaskeuze: lichte, licht doorzichtige kleuren */
+.klasbtn{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.klasbtn.k1{background:linear-gradient(160deg,rgba(110,231,183,.52),rgba(110,231,183,.24));border:2px solid rgba(110,231,183,.6);box-shadow:0 8px 24px rgba(110,231,183,.12)}
+.klasbtn.k2{background:linear-gradient(160deg,rgba(125,190,255,.52),rgba(125,190,255,.24));border:2px solid rgba(125,190,255,.6);box-shadow:0 8px 24px rgba(125,190,255,.12)}
+.klasbtn.k3{background:linear-gradient(160deg,rgba(214,168,255,.54),rgba(214,168,255,.25));border:2px solid rgba(214,168,255,.62);box-shadow:0 8px 24px rgba(214,168,255,.12)}
+.klasbtn.k1 .kn{background:linear-gradient(180deg,#fff 5%,#8CF0C4 95%);-webkit-background-clip:text;background-clip:text}
+.klasbtn.k2 .kn{background:linear-gradient(180deg,#fff 5%,#9ACBFF 95%);-webkit-background-clip:text;background-clip:text}
+.klasbtn.k3 .kn{background:linear-gradient(180deg,#fff 5%,#DDB8FF 95%);-webkit-background-clip:text;background-clip:text}
+.klasbtn span.ksub{color:#F1F4FF}
+
+/* ===================== Klaskeuze: grote kaarten ===================== */
+.klaskeus2{flex:1;display:flex;flex-direction:column;gap:.9rem;overflow:auto;padding:.2rem .2rem 1.4rem;min-height:0}
+.klascards{display:grid;grid-template-columns:repeat(auto-fit,minmax(17.5rem,1fr));gap:1.4rem;align-items:stretch}
+.klascard{position:relative;overflow:hidden;text-align:left;border-radius:1.8rem;padding:1.4rem 1.4rem 1.2rem;display:flex;flex-direction:column;gap:1rem;min-height:17rem;color:#fff;
+  border:2.5px solid var(--kc);background:linear-gradient(165deg,var(--kc1),var(--kc2));box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .12s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.klascard:active{transform:scale(.98)}
+.klascard h2{margin:0;font-family:var(--fd);font-style:italic;font-size:clamp(2.2rem,6vmin,3.3rem);text-transform:uppercase;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.25);position:relative;z-index:1}
+.klascard .kcnum{position:absolute;right:.4rem;top:-1.4rem;font-family:var(--fd);font-style:italic;font-size:10.5rem;line-height:1;color:rgba(255,255,255,.16);pointer-events:none}
+.klascard .kcpills{display:flex;flex-direction:column;gap:.55rem;flex:1;position:relative;z-index:1}
+.klascard .kcpill{background:rgba(255,255,255,.16);border-left:6px solid var(--kc);border-radius:.85rem;padding:.7rem 1rem;font-weight:800;font-size:1.08rem;line-height:1.25}
+.klascard .kcgo{align-self:flex-end;background:linear-gradient(180deg,#FFE066,#FFB703);color:#2a1a00;font-family:var(--fd);font-style:italic;font-weight:900;padding:.65rem 1.2rem;border-radius:.95rem;box-shadow:0 4px 0 #B77700;font-size:1.2rem;position:relative;z-index:1}
+.klascard.k1{--kc:#6EE7B7;--kc1:rgba(110,231,183,.50);--kc2:rgba(110,231,183,.14)}
+.klascard.k2{--kc:#7DBEFF;--kc1:rgba(125,190,255,.50);--kc2:rgba(125,190,255,.14)}
+.klascard.k3{--kc:#D6A8FF;--kc1:rgba(214,168,255,.52);--kc2:rgba(214,168,255,.15)}
+
+@media (orientation:landscape){.klaskeus2 .klascards{flex:1;max-height:38rem;grid-auto-rows:1fr}.klascard{min-height:0}.klascard .kcpill{font-size:clamp(1.1rem,2.6vmin,1.5rem);padding:.85rem 1.1rem}.klascard .kcgo{font-size:clamp(1.2rem,2.8vmin,1.6rem)}}
+
+/* ===================== Spellenpagina per klas: kleur van de klas ===================== */
+.klm.k1{--kc:#6EE7B7;--kc1:rgba(110,231,183,.30);--kc2:rgba(110,231,183,.07)}
+.klm.k2{--kc:#7DBEFF;--kc1:rgba(125,190,255,.30);--kc2:rgba(125,190,255,.07)}
+.klm.k3{--kc:#D6A8FF;--kc1:rgba(214,168,255,.32);--kc2:rgba(214,168,255,.08)}
+.klm .top h1{background:linear-gradient(180deg,#fff 8%,var(--kc) 92%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.klm .hs{padding:.3rem .3rem 1.4rem}
+.klm h3.sec{display:flex;align-items:center;gap:.7rem;padding:.55rem 1rem;margin:.4rem 0 1rem;border-radius:1rem;border-left:7px solid var(--kc);background:linear-gradient(90deg,var(--kc1),transparent);color:#fff}
+.klm h3.sec span{display:none}
+.klm .tiles{grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr))}
+.klm .tile{background:linear-gradient(165deg,var(--kc1),var(--kc2));border:2px solid var(--kc);box-shadow:0 10px 26px rgba(0,0,0,.32);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-radius:1.5rem}
+.klm .tile::before{background:var(--kc);height:.35rem;opacity:.9}
+.klm .tile p{color:#E3E8FF}
+.klm .tile:active{box-shadow:0 0 0 3px var(--kc),0 0 2rem var(--kc1)}
+.klm .tile::after{font-size:1.05rem;padding:.5rem 1.1rem;border-radius:.8rem}
+@media (max-width:600px){.klm .tiles{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1082,11 +1143,13 @@ function showHome() {
   screen = 'home'; rerender = showHome;
   const kl = KLAS_LIST.find(x => x[0] === KLAS), tileOf = ([id, g]) => `<button class="tile" data-act="openGame" data-arg="${id}">${g.tile()}<h3${g.title.length > 12 ? ' class="long"' : ''}>${esc(g.title)}</h3><p>${esc(g.sub)}</p></button>`;
   const body = !kl
-    ? `<div class="klaskeus"><h2>Kies je klas</h2><div class="klasgrid">${KLAS_LIST.map(([k, name]) => `<button class="klasbtn" data-act="klas" data-arg="${k}"><div class="kn">${k}</div><b>${esc(name)}</b><span class="ksub">${klasSecs(k).map(x => esc(x[1])).join('<br>') || 'Nog geen spellen'}</span></button>`).join('')}</div></div>`
+    ? `<div class="klaskeus2"><h3 class="sec">Kies je klas</h3><div class="klascards">${KLAS_LIST.map(([k, name]) => {
+      const secs = klasSecs(k), n = secs.reduce((a, x) => a + Object.values(GAMES).filter(g => g.section === x[0]).length, 0);
+      return `<button class="klascard k${k}" data-act="klas" data-arg="${k}"><span class="kcnum">${k}</span><h2>${esc(name)}</h2><div class="kcpills">${secs.map(x => `<div class="kcpill">${esc(x[1])}</div>`).join('') || '<div class="kcpill">Nog geen spellen</div>'}</div><span class="kcgo">${n} spellen ▶</span></button>`; }).join('')}</div></div>`
     : `<div class="hs">${klasSecs(kl[0]).map(([sid, name, grade]) => `<h3 class="sec">${esc(name)} <span>${esc(grade)}</span></h3><div class="tiles">
       ${Object.entries(GAMES).filter(([, g]) => g.section === sid).map(tileOf).join('')}
     </div>`).join('') || '<p class="empty">Nog geen spellen voor deze klas.</p>'}</div>`;
-  app.innerHTML = `<section class="screen">
+  app.innerHTML = `<section class="screen${kl ? ' klm k' + kl[0] : ''}">
     <header class="top">${kl ? '<button class="btn" data-act="klas" data-arg="">← Klassen</button>' : ''}<h1>${kl ? esc(kl[1]) : 'Lesspellen'}</h1><div class="spacer"></div>
       <button class="btn" data-act="fullscreen">⛶ Volledig scherm</button>
       <div><button class="gear" id="gear" aria-label="Instellingen">⚙</button><div class="hint">houd vast</div></div>
@@ -1126,19 +1189,48 @@ function showSetup() {
 }
 
 function showPlayers() {
-  screen = 'players'; rerender = showPlayers;
-  const c = curClass(), ec = effCfg(c && c.id), mk = modeKey(GID, ec);
-  const tiles = c ? c.students.slice().sort(byName).map(st => {
-    const b = bestFor(st.id, mk);
-    return `<button class="ptile" data-act="pick" data-arg="${st.id}">${b !== null ? `<span class="best">🏆 ${b}</span>` : ''}${avatar(st, 'lg')}<span class="nm">${esc(st.name)}</span></button>`;
-  }).join('') : '';
+  screen = 'players'; rerender = showPlayers; SESS = null;
+  const c = curClass(), ec = effCfg(c && c.id), mk = modeKey(GID, ec), ids = c ? c.students.map(st => st.id) : [];
+  PL.picked = PL.picked.filter(id => id === 'guest' || ids.includes(id)).slice(0, PL.n);
+  const multi = PL.n > 1, loot = multi && PL.mode === 'loot', nm = id => id === 'guest' ? {id: 'guest', name: 'Gast', guest: true} : c.students.find(x => x.id === id);
+  const ctrl = `<div class="plctrl"><div class="seg">${[1, 2, 3].map(n => `<button class="${PL.n === n ? 'on' : ''}" data-act="plN" data-arg="${n}">${n === 1 ? '1 speler' : n + ' spelers'}</button>`).join('')}</div>` +
+    (multi ? `<div class="seg"><button class="${PL.mode === 'kies' ? 'on' : ''}" data-act="plMode" data-arg="kies">Ik kies</button><button class="${PL.mode === 'loot' ? 'on' : ''}" data-act="plMode" data-arg="loot">🎲 Willekeurig</button></div><span class="muted small">Ze spelen om de beurt, iedereen krijgt de volle tijd.</span>` : '') + `</div>`;
+  const tile = st => { const b = bestFor(st.id, mk), i = PL.picked.indexOf(st.id);
+    return `<button class="ptile ${i >= 0 ? 'sel' : ''}" data-act="pick" data-arg="${st.id}">${i >= 0 ? `<span class="pord">${i + 1}</span>` : ''}${b !== null && !multi ? `<span class="best">🏆 ${b}</span>` : ''}${avatar(st, 'lg')}<span class="nm">${esc(st.name)}</span></button>`; };
+  const tiles = c ? c.students.slice().sort(byName).map(tile).join('') : '';
+  const gi = PL.picked.indexOf('guest'), guest = `<button class="ptile guest ${gi >= 0 ? 'sel' : ''}" data-act="guest">${gi >= 0 ? `<span class="pord">${gi + 1}</span>` : ''}${avatar({name: 'Gast', guest: true}, 'lg')}<span class="nm">Gast</span></button>`;
+  let body;
+  if (loot) {
+    const enough = c && c.students.length >= PL.n;
+    body = `<div class="plloot">${PL.picked.length === PL.n ? PL.picked.map((id, i) => `<div class="ptile"><span class="pord">${i + 1}</span>${avatar(nm(id), 'xl')}<span class="nm">${esc(nm(id).name)}</span></div>`).join('')
+      : enough ? `<p class="muted">Tik op loten om ${PL.n} leerlingen uit ${esc(c.name)} te kiezen.</p>` : `<p class="muted">Voor loten heb je een klas nodig met minstens ${PL.n} leerlingen. Voeg die toe bij Instellingen, of kies zelf.</p>`}</div>
+      <div class="plstart"><button class="btn big" data-act="plLoot" ${enough ? '' : 'disabled'}>🎲 ${PL.picked.length === PL.n ? 'Opnieuw loten' : 'Loot ' + PL.n + ' spelers'}</button><button class="btn primary big" data-act="sessStart" ${PL.picked.length === PL.n ? '' : 'disabled'}>Start ▶</button></div>`;
+  } else {
+    body = `<div class="pgrid">${tiles}${guest}</div>` + (multi ? `<div class="plstart"><span>${PL.picked.length} van ${PL.n} gekozen (tik de leerlingen aan in de volgorde van spelen)</span><button class="btn primary big" data-act="sessStart" ${PL.picked.length === PL.n ? '' : 'disabled'}>Start ▶</button></div>` : '');
+  }
   app.innerHTML = `<section class="screen">
-    <header class="top"><button class="btn" data-act="setup">← Terug</button><h2>Wie speelt er?</h2><span class="chip">${esc(GAMES[GID].title)} · ${esc(modeLabel(GID, ec))}</span><div class="spacer"></div>${classTabs(c && c.id)}</header>
-    <div class="pgrid">${tiles}
-      <button class="ptile guest" data-act="guest">${avatar({name: 'Gast', guest: true}, 'lg')}<span class="nm">Gast</span></button>
-    </div>
+    <header class="top"><button class="btn" data-act="setup">← Terug</button><h2>${multi ? 'Wie spelen er?' : 'Wie speelt er?'}</h2><span class="chip">${esc(GAMES[GID].title)} · ${esc(modeLabel(GID, ec))}</span><div class="spacer"></div>${classTabs(c && c.id)}</header>
+    ${ctrl}${body}
     ${c ? '' : `<p class="muted small">Nog geen klas ingesteld. Als gast wordt de score niet bewaard.</p>`}
   </section>`;
+}
+function sessStart(order) {
+  const c = curClass(), ids = order || PL.picked;
+  const players = ids.map(id => id === 'guest' ? {id: 'guest', name: 'Gast', guest: true} : c && c.students.find(x => x.id === id)).filter(Boolean);
+  if (players.length < 2) return;
+  SESS = {players, i: 0, res: [], gid: GID, classId: c ? c.id : null};
+  startGame(players[0], SESS.classId);
+}
+function showSessFinal() {
+  screen = 'results'; rerender = null;
+  const R = SESS.res.slice().sort((x, y) => y.pts - x.pts), gm = GAMES[SESS.gid], medal = ['🥇', '🥈', '🥉'];
+  const tie = R.length > 1 && R[0].pts === R[1].pts;
+  app.innerHTML = `<section class="screen">
+    <header class="top"><button class="btn" data-act="home">← Menu</button><h2>🏁 Eindstand · ${esc(gm.title)}</h2></header>
+    <div class="card sessfinal">${tie ? '<div class="badge">Gelijkspel aan de top!</div>' : ''}${R.map(r => { const place = R.findIndex(x => x.pts === r.pts);
+      return `<div class="srow ${place === 0 ? 'win' : ''}"><div class="smed">${medal[place] || place + 1}</div>${avatar(r.p, 'lg')}<div class="snm">${esc(r.p.name)}</div><div class="spt">${r.pts}<small>punten</small></div><div class="sdt">${r.good} ${esc(gm.scoreLabel || 'goed')} · ${r.wrong} ${esc(gm.wrongLabel || 'fout')} · 🔥 ${r.streak} op rij</div></div>`; }).join('')}
+      <div class="row"><button class="btn primary big" data-act="sessAgain">↻ Nog een ronde</button><button class="btn big" data-act="toPlayers">Andere spelers</button></div></div></section>`;
+  confetti();
 }
 
 function showBoard() {
@@ -1157,6 +1249,8 @@ const BM = {on: false};
 
 /* ===================== Spelverloop (gedeeld) ===================== */
 let G = null;
+let SESS = null;
+const PL = {n: 1, mode: 'kies', picked: []};
 function startGame(player, classId) {
   stopGame();
   const game = GAMES[GID];
@@ -1166,7 +1260,7 @@ function startGame(player, classId) {
   app.innerHTML = `<section class="screen">
     <header class="playbar">
       <button class="iconbtn" data-act="quit" aria-label="Stoppen">✕</button>
-      <div class="who">${avatar(player, 'sm')}<span>${esc(player.name)}</span></div>
+      <div class="who">${avatar(player, 'sm')}<span>${esc(player.name)}${SESS ? ` · ${SESS.i + 1}/${SESS.players.length}` : ''}</span></div>
       <div class="timer" id="timer"><div class="timerfill" id="tfill"></div></div>
       <div class="ttext" id="ttext">${G.cfg.time}</div>
       <div class="streak" id="streak"></div>
@@ -1236,6 +1330,7 @@ function finish() {
     save();
     rec = G.points > 0 && (prevBest === null || G.points > prevBest);
   }
+  if (SESS) SESS.res.push({p: G.player, pts: G.points, good: G.score, wrong: G.wrong, streak: G.best});
   showResults(rec, prevBest);
   if (rec) confetti();
 }
@@ -1254,7 +1349,7 @@ function showResults(rec, prevBest) {
         <div class="statrow"><span><b>${G.score}</b> ${gm.scoreLabel || 'goed'}</span><span><b>${G.wrong}</b> ${gm.wrongLabel || 'fout'}</span><span><b>${G.score + G.wrong ? Math.round(G.score / (G.score + G.wrong) * 100) : 0}%</b> goed</span><span><b>🔥 ${G.best}</b> langste reeks</span></div>
         ${rec ? `<div class="badge">🏆 Nieuw record!</div>` : (prevBest !== null ? `<div class="muted">Jouw record: ${Math.max(prevBest, G.points)}</div>` : '')}
         ${p.guest ? `<div class="muted small">Gastscore wordt niet bewaard.</div>` : ''}
-        <div class="row"><button class="btn primary big" data-act="again">↻ Nog een keer</button><button class="btn big" data-act="toPlayers">Andere speler</button></div>
+        ${SESS ? (SESS.i < SESS.players.length - 1 ? `<div class="muted">Speler ${SESS.i + 1} van ${SESS.players.length} is klaar. Geef het apparaat door.</div><div class="row"><button class="btn primary big" data-act="sessNext">Volgende: ${esc(SESS.players[SESS.i + 1].name)} ▶</button></div>` : `<div class="row"><button class="btn primary big" data-act="sessFinal">🏁 Bekijk de eindstand</button></div>`) : `<div class="row"><button class="btn primary big" data-act="again">↻ Nog een keer</button><button class="btn big" data-act="toPlayers">Andere speler</button></div>`}
         ${mist ? `<div class="mist"><h4>Deze gingen fout (goed, jouw keuze doorgestreept):</h4>${mist}</div>` : ''}
       </div>
       <div class="card"><h3>Top 10${cls ? ' · ' + esc(cls.name) : ''}</h3>
@@ -3823,7 +3918,14 @@ const ACT = {
   prNext: () => { if (G && G.running && G.locked && G.pq) prAfter(G.pq); },
   cpNext: () => { if (G && G.running && G.locked && G.cq) cpAfter(G.cq); },
   gnNext: () => { if (G && G.running && G.locked && G.gq) gnAfter(G.gq); },
-  home: () => { stopGame(); showHome(); },
+  home: () => { stopGame(); SESS = null; showHome(); },
+  plN: n => { PL.n = +n; PL.picked = []; showPlayers(); },
+  plMode: m => { PL.mode = m; PL.picked = []; showPlayers(); },
+  plLoot: () => { const c = curClass(); if (!c || c.students.length < PL.n) return; PL.picked = shuffle(c.students.map(x => x.id)).slice(0, PL.n); showPlayers(); },
+  sessStart: () => sessStart(),
+  sessNext: () => { if (!SESS) return; SESS.i++; GID = SESS.gid; startGame(SESS.players[SESS.i], SESS.classId); },
+  sessFinal: () => { if (SESS) showSessFinal(); },
+  sessAgain: () => { if (!SESS) return; GID = SESS.gid; const ids = SESS.players.map(x => x.guest ? 'guest' : x.id); ids.push(ids.shift()); sessStart(ids); },
   klas: k => { KLAS = k || null; showHome(); },
   settings: () => showSettings(),
   stats: () => {
@@ -3860,10 +3962,10 @@ const ACT = {
     D.scores = D.scores.filter(x => !(String(x.t) === t && x.s === sid)); save(); toast('Score gewist.'); showBoard();
   },
   cls: id => { D.lastClass = id; save(); if (rerender) rerender(); },
-  pick: id => { const c = curClass(); const st = c && c.students.find(s => s.id === id); if (st) startGame(st, c.id); },
-  guest: () => startGame({id: 'guest', name: 'Gast', guest: true}, null),
+  pick: id => { if (PL.n > 1) { const i = PL.picked.indexOf(id); if (i >= 0) PL.picked.splice(i, 1); else if (PL.picked.length < PL.n) PL.picked.push(id); showPlayers(); return; } const c = curClass(); const st = c && c.students.find(s => s.id === id); if (st) startGame(st, c.id); },
+  guest: () => { if (PL.n > 1) { const i = PL.picked.indexOf('guest'); if (i >= 0) PL.picked.splice(i, 1); else if (PL.picked.length < PL.n) PL.picked.push('guest'); showPlayers(); return; } startGame({id: 'guest', name: 'Gast', guest: true}, null); },
   again: () => { GID = G.game; startGame(G.player, G.classId); },
-  quit: async () => { if (await ask('Stoppen met dit spel? De score wordt niet bewaard.', 'Stoppen', 'Doorgaan')) { stopGame(); saveAns(); showSetup(); } },
+  quit: async () => { if (await ask('Stoppen met dit spel? De score wordt niet bewaard.', 'Stoppen', 'Doorgaan')) { stopGame(); SESS = null; saveAns(); showSetup(); } },
   addClass: () => {
     const v = $('#newcls').value.trim(); if (!v) { toast('Typ eerst een naam voor de klas.'); return; }
     const k = {id: uid(), name: v, students: []}; D.classes.push(k); D.lastClass = k.id; save(); showSettings();
